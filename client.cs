@@ -43,7 +43,7 @@ public class UdpSocket : MonoBehaviour
 
     void Awake()
     {
-        // Create remote endpoint (to Matlab) 
+        // Create remote endpoint (to Python) 
         remoteEndPoint = new IPEndPoint(IPAddress.Parse(IP), txPort);
 
         // Create local client
@@ -51,14 +51,25 @@ public class UdpSocket : MonoBehaviour
 
         // local endpoint define (where messages are received)
         // Create a new thread for reception of incoming messages
-        receiveThread = new Thread(new ThreadStart(ReceiveData));
+        Thread receiveThread = new Thread(new ThreadStart(ReceiveData));
         receiveThread.IsBackground = true;
         receiveThread.Start();
 
         // Initialize (seen in comments window)
         print("UDP Comms Initialised");
 
-        StartCoroutine(SendDataCoroutine()); // DELETE THIS: Added to show sending data from Unity to Python via UDP
+        // Start sending numbers immediately
+        StartCoroutine(SendNumbers());
+    }
+
+    IEnumerator SendNumbers()
+    {
+        while (true)
+        {
+            SendData("Sent from Unity: " + i.ToString());
+            i++;
+            yield return null; // Allow the next frame to proceed without delay
+        }
     }
 
 }
