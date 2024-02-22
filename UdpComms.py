@@ -1,5 +1,4 @@
 
-
 class UdpComms():
     def __init__(self,udpIP,portTX,portRX,enableRX=False,suppressWarnings=True):
         """

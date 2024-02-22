@@ -1,6 +1,5 @@
 
 # Example of a Python UDP server
-
 import UdpComms as U
 import time
 
@@ -17,5 +16,3 @@ while True:
 
     if data != None: # if NEW data has been received since last ReadReceivedData function call
         print(data) # print new received data
-
-    time.sleep(1)
