@@ -1,4 +1,3 @@
-# Allow two-way communication between Python3 and Unity to send and receive strings
 
 # Example of a Python UDP server
 
